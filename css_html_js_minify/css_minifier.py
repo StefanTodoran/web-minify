@@ -206,7 +206,8 @@ def condense_hex_colors(css):
     """Shorten colors from #AABBCC to #ABC where possible."""
     regex = re.compile(
         r"""([^\"'=\s])(\s*)#([0-9a-f])([0-9a-f])([0-9a-f])"""
-        r"""([0-9a-f])([0-9a-f])([0-9a-f])""", re.I | re.S)
+        r"""([0-9a-f])([0-9a-f])([0-9a-f])(?![0-9a-f])""", re.I | re.S)
+    # The above matches a hex string that is 6 digits long, never 8
     match = regex.search(css)
     while match:
         first = match.group(3) + match.group(5) + match.group(7)
