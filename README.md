@@ -1,10 +1,8 @@
 # css-html-js-minify
 
-Async single-file cross-platform no-dependencies Minifier for the Web. [![GPL License](http://img.shields.io/badge/license-GPL-blue.svg?style=plastic)](http://opensource.org/licenses/GPL-3.0) [![LGPL License](http://img.shields.io/badge/license-LGPL-blue.svg?style=plastic)](http://opensource.org/licenses/LGPL-3.0) [![Python Version](https://img.shields.io/badge/Python-3-brightgreen.svg?style=plastic)](http://python.org) [![Travis report](https://travis-ci.org/juancarlospaco/css-html-js-minify.svg?branch=master "Travis-C.I. Testing report")](https://travis-ci.org/juancarlospaco/css-html-js-minify)
+Async single-file cross-platform no-dependencies minifier for web projects. [![GPL License](http://img.shields.io/badge/license-GPL-blue.svg?style=plastic)](http://opensource.org/licenses/GPL-3.0) [![LGPL License](http://img.shields.io/badge/license-LGPL-blue.svg?style=plastic)](http://opensource.org/licenses/LGPL-3.0) [![Python Version](https://img.shields.io/badge/Python-3-brightgreen.svg?style=plastic)](http://python.org)
 
-![screenshot](https://source.unsplash.com/q78PYnUehV8/800x402 "Illustrative Photo by https://unsplash.com/@s_erwin")
-
-
+TODO: replace this
 https://pypi.python.org/pypi/css-html-js-minify
 
 ```shell
@@ -46,7 +44,6 @@ unicode characters. SHA1 HEX-Digest 11 Chars Hash on Filenames is used for
 Server Cache. CSS Properties are Alpha-Sorted, to help spot cloned ones,
 Selectors not. Watch works for whole folders, with minimum of ~60 Secs between
 runs.
-
 ```
 
 - Takes a full path to anything, a file or a folder, then parse, optimize and compress for Production.
@@ -59,24 +56,6 @@ runs.
 - Can Obfuscate, GZIP and Hash files, also Watch for changes on files.
 - Can execute arbitrary commands after and before running.
 - `*.css` files are saved as `*.min.css`, `*.js` are saved as `*.min.js`, `*.htm` are saved as `*.html`
-
-
-# Screenshots
-
-**Linux:**
-
-![screenshot](https://raw.githubusercontent.com/juancarlospaco/css-html-js-minify/master/linux-css-html-js-compressor.jpg "Linux 32bit/64bit Python2/Python3")
-
-**Apple Mac Os X:**
-[ <sup>*(Provided by Loggerhead)*</sup> ](https://github.com/juancarlospaco/css-html-js-minify/issues/7#issuecomment-97280835)
-![screenshot](https://raw.githubusercontent.com/juancarlospaco/css-html-js-minify/master/osx-css-html-js-compressor_terminal.jpg "Apple Mac Os X Terminal by Loggerhead")
-
-![screenshot](https://raw.githubusercontent.com/juancarlospaco/css-html-js-minify/master/osx-css-html-js-compressor_iterm2.jpg "Apple Mac Os X iTerm2 by Loggerhead")
-
-**MS Windows:**
-
-![screenshot](https://raw.githubusercontent.com/juancarlospaco/css-html-js-minify/master/windows-css-html-js-compressor.jpg "MS Windows 32bit/64bit Python2/Python3")
-
 
 # Command-line usage
 
@@ -124,10 +103,10 @@ Uninstall `pip uninstall css-html-js-minify`
 
 # Why?
 
-- **Why another Compressor ?**, there are lots of compressors for web files out there!; *Or maybe not ?*.
+**Why another Compressor?**
+- There are lots of compressors for web files out there! *Or maybe not?*.
 - Many of them only work inside Django/Flask, or frameworks of PHP/Java/Ruby, or can not process whole folders.
-- This project is the big brother of another project that does the inverse, a [Beautifier for the Web.](https://github.com/juancarlospaco/css-html-prettify#css-html-prettify)
-
+- Many are broken or no longer supported, sometimes due to dependency issues
 
 # Migration
 
@@ -159,29 +138,21 @@ This will make a copy of all `*.html` renaming them as `*.htm` recursively from 
 - Future JavaScript support is orphan, if you want to make ES6, ES7 work feel free to send pull request, we will merge it.
 
 
-# Contributors
-
-- **Please Star this Repo on Github !**, it helps to show up faster on searchs.
-- [Help](https://help.github.com/articles/using-pull-requests) and more [Help](https://help.github.com/articles/fork-a-repo) and Interactive Quick [Git Tutorial](https://try.github.io).
-
-
 # Licence
 
-- GNU GPL and GNU LGPL and [MIT](https://github.com/juancarlospaco/css-html-js-minify/issues/65#issuecomment-330983569).
+- GNU GPL and GNU LGPL and MIT.
 
 This work is free software:
-You can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-Without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-See the GNU General Public License for more details.
-You should have received a copy of the GNU General Public License along with this work.
+You can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this work.
 
 
 # Example
 
+
+
 <details>
 
-**Input CSS:**
+<summary><b>Input CSS</b></summary>
 
 ```css
 /*!
@@ -212,22 +183,24 @@ You should have received a copy of the GNU General Public License along with thi
 
 ```
 
-**Uglify (NodeJS):** *(474 Bytes, 0.189 Secs)*
+</details>
+
+<details>
+
+<summary><b>Uglify (NodeJS):</b> (474 Bytes, 0.189 Secs)</summary>
 
 ```css
 /* * preserve commment */ .class,#NotHex,input[type="text"],a:hover {font-family:Helvetica Neue,Arial,Helvetica,'Liberation Sans',sans-serif;border:0;margin:0;border-color:fuchsia;color:mediumspringgreen;background-position:0 0;transform-origin:0 0;margin:0 !important;font-weight:bold;color:#fff;padding:.9px;position:absolute;z-index:100000;color:#000;background-color:#fff;background-image:url("data:image/jpeg;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=")};
 ```
 
-**css-html-js-minify (Python3):** *(469 Bytes, 0.010 Secs)*
+</details>
+
+<details>
+
+<summary><b>css-html-js-minify (Python3):</b> (469 Bytes, 0.010 Secs)</summary>
 
 ```css
 /*!* preserve commment */ .class,#NotHex,input[type=text],a:hover{font-family:Helvetica Neue,Arial,Helvetica,'Liberation Sans',sans-serif;border:0;margin:0;border-color:#f0f;color:#00fa9a;background-position:0 0;transform-origin:0 0;margin:0 !important;font-weight:700;color:#fff;padding:.9px;position:absolute;z-index:100000;color:#000;background-color:#FFF;background-image:url(data:image/jpg;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=)}
 ```
 
 </details>
-
-
-# Ethics and Humanism Policy
-
-- May this FLOSS be always Pristine and Clean, No AdWare, No Spamm, No BundleWare, No Infomercial, No MalWare.
-- This project is [LGBTQQIAAP friendly](http://www.urbandictionary.com/define.php?term=LGBTQQIAAP "Whats LGBTQQIAAP").
