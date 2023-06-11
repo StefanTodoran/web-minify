@@ -35,7 +35,35 @@ def js_minify_keep_comments(js):
     """Return a minified version of the Javascript string."""
     ins, outs = StringIO(js), StringIO()
     JavascriptMinify(ins, outs).minify()
+    # TODO: This is not ideal. We do want to concatenate everything
+    # to a single line. HOWEVER the naive approach of ";".join will break
+    # things, such as for example "if" statements without curly braces.
     return force_single_line_js(outs.getvalue())
+
+
+def concatenate_if_statements(js):
+    lines = js.splitlines()
+    output = []
+    inside_if = False
+
+    for line in lines:
+        line = line.strip()
+
+        if line.startswith('if') and not line.endswith('{'):
+            inside_if = True
+            output.append(line)
+        elif inside_if:
+            output[-1] += ' ' + line
+            if line.endswith(';'):
+                inside_if = False
+        else:
+            output.append(line)
+
+    result = ""
+    for line in output:
+        result += "\n" + line
+
+    return result
 
 
 def force_single_line_js(js):
@@ -174,6 +202,7 @@ def js_minify(js):
     """Minify a JavaScript string."""
     print("""Future JavaScript support is orphan and not supported!.
           If you want to make ES6,ES7 work feel free to send pull requests.""")
-    js = remove_commented_lines(js)
-    js = js_minify_keep_comments(js)
+    js = concatenate_if_statements(js)
+    # js = remove_commented_lines(js)
+    # js = js_minify_keep_comments(js)
     return js.strip()

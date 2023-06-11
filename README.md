@@ -1,6 +1,8 @@
 # css-html-js-minify
 
-Async single-file cross-platform no-dependencies minifier for web projects. [![GPL License](http://img.shields.io/badge/license-GPL-blue.svg?style=plastic)](http://opensource.org/licenses/GPL-3.0) [![LGPL License](http://img.shields.io/badge/license-LGPL-blue.svg?style=plastic)](http://opensource.org/licenses/LGPL-3.0) [![Python Version](https://img.shields.io/badge/Python-3-brightgreen.svg?style=plastic)](http://python.org)
+Async single-file cross-platform no-dependencies minifier for web projects. Includes updates compared to fork, mostly minor bug fixes or optimizations, as well as more extensive test suite. 
+
+[![GPL License](http://img.shields.io/badge/license-GPL-blue.svg?style=plastic)](http://opensource.org/licenses/GPL-3.0) [![LGPL License](http://img.shields.io/badge/license-LGPL-blue.svg?style=plastic)](http://opensource.org/licenses/LGPL-3.0) [![Python Version](https://img.shields.io/badge/Python-3-brightgreen.svg?style=plastic)](http://python.org)
 
 TODO: replace this
 https://pypi.python.org/pypi/css-html-js-minify
