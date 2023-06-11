@@ -66,7 +66,7 @@ def concatenate_if_statements(js):
 def force_single_line_js(js):
     """Force Javascript to a single line, even if need to add semicolon."""
     # TODO: This is not ideal. We do want to concatenate everything
-    # to a single line. HOWEVER the naive approach of ";".join will break
+    # to a single line, HOWEVER the naive approach of ";".join will break
     # things, such as for example "if" statements without curly braces.
     return ";".join(js.splitlines()) if len(js.splitlines()) > 1 else js
 
@@ -203,6 +203,6 @@ def js_minify(js):
     print("""Future JavaScript support is orphan and not supported!.
           If you want to make ES6,ES7 work feel free to send pull requests.""")
     js = concatenate_if_statements(js)
-    # js = remove_commented_lines(js)
-    # js = js_minify_keep_comments(js)
+    js = remove_commented_lines(js)
+    js = js_minify_keep_comments(js)
     return js.strip()
