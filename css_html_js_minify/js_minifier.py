@@ -38,7 +38,7 @@ def js_minify_keep_comments(js):
     return force_single_line_js(outs.getvalue())
 
 
-def concatenate_if_statements(js):
+def concatenate_shorthand_if_statements(js):
     lines = js.splitlines()
     output = []
     inside_if = False
@@ -63,10 +63,52 @@ def concatenate_if_statements(js):
     return result
 
 
+def concatenate_else_clauses(js):
+    lines = js.splitlines()
+    i = 0
+
+    while i < len(lines) - 1:
+        line = lines[i].strip()
+        next_line = lines[i + 1].strip()
+        
+        if line.endswith("}") and next_line.startswith("else"):
+            lines[i] += " " + next_line
+            del lines[i + 1]
+        
+        i += 1
+    
+    result = ""
+    for line in lines:
+        result += "\n" + line
+
+    return result
+
+
+def concatenate_chained_functions(js):
+    lines = js.splitlines()
+    i = 0
+
+    while i < len(lines) - 1:
+        line = lines[i].strip()
+        next_line = lines[i + 1].strip()
+
+        if not line.endswith(';') and next_line.startswith('.'):
+            lines[i] += " " + next_line
+            del lines[i + 1]
+        else:    
+            i += 1
+
+    result = ""
+    for line in lines:
+        result += "\n" + line
+
+    return result
+
+
 def force_single_line_js(js):
     """Force Javascript to a single line, even if need to add semicolon."""
     # TODO: This is not ideal. We do want to concatenate everything
-    # to a single line, HOWEVER the naive approach of ";".join will break
+    # to a single line. HOWEVER the naive approach of ";".join will break
     # things, such as for example "if" statements without curly braces.
     return ";".join(js.splitlines()) if len(js.splitlines()) > 1 else js
 
@@ -201,8 +243,10 @@ class JavascriptMinify(object):
 def js_minify(js):
     """Minify a JavaScript string."""
     print("""Future JavaScript support is orphan and not supported!.
-          If you want to make ES6,ES7 work feel free to send pull requests.""")
-    js = concatenate_if_statements(js)
+          If you want to make ES6, ES7 work feel free to send pull requests.""")
+    js = concatenate_shorthand_if_statements(js)
+    js = concatenate_else_clauses(js)
+    js = concatenate_chained_functions(js)
     js = remove_commented_lines(js)
     js = js_minify_keep_comments(js)
     return js.strip()
