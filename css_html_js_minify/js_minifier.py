@@ -63,7 +63,25 @@ def concatenate_shorthand_if_statements(js):
     return result
 
 
-def concatenate_else_clauses(js):
+def concatenate_block_clauses(js):
+    """
+    When typescript is transpiled, sometimes if else statements and try catch blocks are
+    written not as:
+        if {
+            ...
+        } else {
+            ...
+        }
+    ...but rather with the else being on the next line from the if statement, meaning:
+        if {
+            ...
+        }
+        else {
+            ...
+        }
+    We need to concatenate these lines as putting a semicolon at the end of each line without
+    concatenation would result in the else and catch statements breaking.
+    """
     lines = js.splitlines()
     i = 0
 
@@ -71,7 +89,7 @@ def concatenate_else_clauses(js):
         line = lines[i].strip()
         next_line = lines[i + 1].strip()
         
-        if line.endswith("}") and next_line.startswith("else"):
+        if line.endswith("}") and (next_line.startswith("else") or next_line.startswith("catch")):
             lines[i] += " " + next_line
             del lines[i + 1]
         
@@ -85,6 +103,10 @@ def concatenate_else_clauses(js):
 
 
 def concatenate_chained_functions(js):
+    """
+    Given multiple lines with chained functions, e.g. a .then chain spread over
+    multiple lines, concatenates all those lines into one.
+    """
     lines = js.splitlines()
     i = 0
 
@@ -245,7 +267,7 @@ def js_minify(js):
     print("""Future JavaScript support is orphan and not supported!.
           If you want to make ES6, ES7 work feel free to send pull requests.""")
     js = concatenate_shorthand_if_statements(js)
-    js = concatenate_else_clauses(js)
+    js = concatenate_block_clauses(js)
     js = concatenate_chained_functions(js)
     js = remove_commented_lines(js)
     js = js_minify_keep_comments(js)
