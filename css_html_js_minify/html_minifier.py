@@ -91,7 +91,9 @@ def remove_html_comments(html):
     >>> _+= "<!-- kill me please -->keep" ; remove_html_comments(_)
     '<!-- build:dev -->a<!-- endbuild -->b<!--[if IE 7]>c<![endif]--> keep'
     """  # Grunt uses comments to as build arguments, bad practice but still.
-    return re.compile(r'<!-- .*? -->', re.I).sub('', html)
+    # return re.compile(r'<!-- .*? -->', re.I).sub('', html) 
+    # this only works for single line comments? why not just do this:
+    return re.compile(r'<!-- [\s\S]*? -->', re.I).sub('', html)
 
 
 def unquote_html_attributes(html):
