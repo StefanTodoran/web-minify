@@ -20,7 +20,11 @@ def remove_commented_lines(js):
     result = ""
     for line in js.splitlines():
         line = re.sub(r"/\*.*\*/" ,"" ,line) # (/*COMMENT */)
-        line = re.sub(r"//.*","" ,line) # (//COMMENT)
+        
+        # line = re.sub(r"//.*","" ,line) # (//COMMENT)
+        pattern = r'(?:([^\/"\']|\/\*(?:[^*]|\*+[^*\/])*\*+\/|"(?:[^"\\]|\\.)*"|\'(?:[^\'\\]|\\.)*\')|\/\/.*)'
+        line = re.sub(pattern, r'\1', line)
+
         result += '\n'+line
     return result
 
